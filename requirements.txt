@@ -1,0 +1,18 @@
+# Python dependencies for the HARKBirdNET pipeline.
+#
+# PyHARK is NOT listed here -- it installs separately from the HARK wheel
+# index inside a virtual environment. See README step 3.
+#
+# Versions are those the pipeline was developed and validated on. Later
+# versions will probably work; these are what was tested.
+
+numpy==1.26.4
+scipy==1.15.3
+pandas==2.3.3
+matplotlib==3.10.8
+soundfile==0.13.1
+birdnet==0.1.7
+
+# birdnet pulls in tensorflow, resampy, tqdm and ordered-set.
+# Installing it will downgrade numpy to 1.26.4 for TensorFlow compatibility --
+# this is expected and is the validated version.

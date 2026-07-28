@@ -1,0 +1,25 @@
+# Audio and HARK output -- never commit these
+*.wav
+*.flac
+localized_*/
+Data/
+Output/
+
+# Except the worked example
+!examples/**/*.wav
+
+# HARKBird (install separately, see README)
+HARKBird_4.5/
+HARKBird_4.5.zip
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editor / OS
+*.save
+*.orig
+*.swp
+.DS_Store
