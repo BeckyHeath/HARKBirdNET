@@ -1,0 +1,150 @@
+--- a/hb_pyhark.py
++++ b/hb_pyhark.py
+@@ -117,7 +117,7 @@
+ 
+     # 出力先ディレクトリの作成（存在しない場合のみ）
+     os.makedirs(outdir, exist_ok=True)
+-			
++
+     # CSV形式で保存（区切り文字はカンマ）
+     # musicspecpowの各行（各フレームのMUSICスペクトル）の前半と後半を入れ替える
+     # np.fft.fftshiftをaxis=1（行方向）に適用する
+@@ -261,72 +261,72 @@
+ 
+     #print(f"音源定位結果を {output_csv_path} に保存しました。")
+ 
+-    # GHDSS インスタンシエイト
+-    ghdss = hark.core.GHDSS()
+-    # GPU を用いる場合
+-    # ghdss = hark.gpu.GHDSSGPU()
+-
+-    # GHDSS 実行
+-    ghdss_output = ghdss(
+-            INPUT_FRAMES=spec.OUTPUT,
+-            INPUT_SOURCES=src_info.OUTPUT,
+-            TF_CONJ_FILENAME=filename_tf)
+-
+-    #print('OUTPUT: {}'.format(ghdss_output.OUTPUT))
+-
+-    #一旦フォルダ内のsep_*.wavファイルを削除する
+-    for f in os.listdir(outdir):
+-        if f.startswith("sep_") and f.endswith(".wav"):
+-            try:
+-                os.remove(os.path.join(outdir, f))
+-            except OSError as e:
+-                print(f"Error removing file {f}: {e}")
+-
+-    synthesize = hark.core.Synthesize()
+-    synthesize_output = synthesize(INPUT=ghdss_output.OUTPUT)
+-
+-    save_wave_pcm = hark.core.SaveWavePCM()
+-    save_wave_pcm_output = save_wave_pcm(
+-        INPUT=synthesize_output.OUTPUT,
+-        BASENAME= outdir+"sep_{srcid}_")
+-
+-    # outdir内のファイルをリストアップ
+-    files_in_outdir = os.listdir(outdir)
+-
+-    # srcidごとにファイルをグループ化
+-    grouped_files = {}
+-    for f in files_in_outdir:
+-        match = re.match(r"sep_(\d+)(_?.*)\.wav", f)
+-        if match:
+-            srcid = int(match.group(1))
+-            if srcid not in grouped_files:
+-                grouped_files[srcid] = []
+-            grouped_files[srcid].append(f)
+-
+-    # 各srcidグループでリネームと削除を実行
+-    for srcid, files in grouped_files.items():
+-        # ファイル名をソートして、最も若い番号のファイルを選択
+-        files.sort()
+-        file_to_keep = files[0]
+-        
+-        # 新しいファイル名
+-        new_filename = f"sep_{srcid}.wav"
+-        
+-        # リネーム対象のファイルパス
+-        old_path = os.path.join(outdir, file_to_keep)
+-        new_path = os.path.join(outdir, new_filename)
+-
+-        # 他のファイル（不要なもの）を削除
+-        for f in files[1:]:
+-            os.remove(os.path.join(outdir, f))
+-            print(f"Deleted: {f}")
+-
+-        if os.path.exists(old_path) and old_path != new_path:
+-            os.rename(old_path, new_path)
+-            #print(f"Renamed: {file_to_keep} -> {new_filename}")
+-
+-
+-    #print('OUTPUT: {}'.format(save_wave_pcm_output.OUTPUT))
++#    # GHDSS インスタンシエイト
++#    ghdss = hark.core.GHDSS()
++#    # GPU を用いる場合
++#    # ghdss = hark.gpu.GHDSSGPU()
++#
++#    # GHDSS 実行
++#    ghdss_output = ghdss(
++#            INPUT_FRAMES=spec.OUTPUT,
++#            INPUT_SOURCES=src_info.OUTPUT,
++#            TF_CONJ_FILENAME=filename_tf)
++#
++#    #print('OUTPUT: {}'.format(ghdss_output.OUTPUT))
++#
++#    #一旦フォルダ内のsep_*.wavファイルを削除する
++#    for f in os.listdir(outdir):
++#        if f.startswith("sep_") and f.endswith(".wav"):
++#            try:
++#                os.remove(os.path.join(outdir, f))
++#            except OSError as e:
++#                print(f"Error removing file {f}: {e}")
++#
++#    synthesize = hark.core.Synthesize()
++#    synthesize_output = synthesize(INPUT=ghdss_output.OUTPUT)
++#
++#    save_wave_pcm = hark.core.SaveWavePCM()
++#    save_wave_pcm_output = save_wave_pcm(
++#        INPUT=synthesize_output.OUTPUT,
++#        BASENAME= outdir+"sep_{srcid}_")
++#
++#    # outdir内のファイルをリストアップ
++#    files_in_outdir = os.listdir(outdir)
++#
++#    # srcidごとにファイルをグループ化
++#    grouped_files = {}
++#    for f in files_in_outdir:
++#        match = re.match(r"sep_(\d+)(_?.*)\.wav", f)
++#        if match:
++#            srcid = int(match.group(1))
++#            if srcid not in grouped_files:
++#                grouped_files[srcid] = []
++#            grouped_files[srcid].append(f)
++#
++#    # 各srcidグループでリネームと削除を実行
++#    for srcid, files in grouped_files.items():
++#        # ファイル名をソートして、最も若い番号のファイルを選択
++#        files.sort()
++#        file_to_keep = files[0]
++#        
++#        # 新しいファイル名
++#        new_filename = f"sep_{srcid}.wav"
++#        
++#        # リネーム対象のファイルパス
++#        old_path = os.path.join(outdir, file_to_keep)
++#        new_path = os.path.join(outdir, new_filename)
++#
++#        # 他のファイル（不要なもの）を削除
++#        for f in files[1:]:
++#            os.remove(os.path.join(outdir, f))
++#            print(f"Deleted: {f}")
++#
++#        if os.path.exists(old_path) and old_path != new_path:
++#            os.rename(old_path, new_path)
++#            #print(f"Renamed: {file_to_keep} -> {new_filename}")
++#
++#
++#    #print('OUTPUT: {}'.format(save_wave_pcm_output.OUTPUT))
+ 
+ 
+ def main():
