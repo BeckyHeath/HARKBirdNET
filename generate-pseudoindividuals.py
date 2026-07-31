@@ -255,7 +255,11 @@ def load_and_filter(all_path, cutoff_path, temporal_window,
         data["second"].map("{:02d}".format),
         format="%Y-%m-%d %H:%M:%S", utc=True,
     )
-    rec_start_epoch = rec_start.astype("int64") // 10**9
+    # Epoch seconds. Do NOT use .astype("int64") // 10**9 -- that assumes
+    # nanosecond resolution, and pandas >= 3.0 returns datetime64[us] here,
+    # which silently gives a result 1000x too small.
+    rec_start_epoch = ((rec_start - pd.Timestamp("1970-01-01", tz="UTC"))
+                       // pd.Timedelta("1s"))
     mid_offset = (data["time_start"] + data["time_end"]) / 2.0
     data_time_epoch = rec_start_epoch + mid_offset
 
