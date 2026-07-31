@@ -1,0 +1,13 @@
+folder,filename,species_latin,species_common,confidence,time_start,time_end,azimuth_peak,azimuth_mean
+Lab,5b_bird_Y_2.wav,Troglodytes troglodytes,Eurasian Wren,0.9778,31.5,34.5,-140.0,-140.0
+Lab,5b_bird_Y_2.wav,Troglodytes troglodytes,Eurasian Wren,0.9702,33.0,36.0,-140.0,-83.12
+Lab,5b_bird_Y_2.wav,Troglodytes troglodytes,Eurasian Wren,0.9881,46.5,49.5,-60.0,-60.0
+Lab,5b_bird_Y_2.wav,Troglodytes troglodytes,Eurasian Wren,0.9853,48.0,51.0,-60.0,-35.31
+Lab,5b_bird_Y_2.wav,Troglodytes troglodytes,Eurasian Wren,0.9906,61.5,64.5,-20.0,-23.75
+Lab,5b_bird_Y_2.wav,Troglodytes troglodytes,Eurasian Wren,0.9846,63.0,66.0,-20.0,-15.31
+Lab,5b_bird_Y_2.wav,Troglodytes troglodytes,Eurasian Wren,0.9346,76.5,79.5,25.0,25.0
+Lab,5b_bird_Y_2.wav,Troglodytes troglodytes,Eurasian Wren,0.9512,78.0,81.0,25.0,-5.31
+Lab,5b_bird_Y_2.wav,Troglodytes troglodytes,Eurasian Wren,0.9644,91.5,94.5,120.0,123.75
+Lab,5b_bird_Y_2.wav,Troglodytes troglodytes,Eurasian Wren,0.9864,93.0,96.0,120.0,114.06
+Lab,5b_bird_Y_2.wav,Troglodytes troglodytes,Eurasian Wren,0.9806,106.5,109.5,175.0,123.75
+Lab,5b_bird_Y_2.wav,Troglodytes troglodytes,Eurasian Wren,0.9799,108.0,111.0,-10.0,61.88
