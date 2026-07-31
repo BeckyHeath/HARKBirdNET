@@ -1,0 +1,23 @@
+folder,filename,species_latin,species_common,confidence,time_start,time_end,azimuth_peak,azimuth_mean
+Field,2m_wN_Bird_t01.wav,Cyanistes caeruleus,Eurasian Blue Tit,0.7286,10.5,13.5,-10.0,4.69
+Field,2m_wN_Bird_t01.wav,Cyanistes caeruleus,Eurasian Blue Tit,0.5621,12.0,15.0,45.0,36.67
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9156,13.5,16.5,30.0,32.81
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9352,15.0,18.0,25.0,26.25
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.8966,16.5,19.5,25.0,27.5
+Field,2m_wN_Bird_t01.wav,Parus major,Great Tit,0.652,18.0,21.0,45.0,47.5
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.8505,25.5,28.5,20.0,60.67
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9837,27.0,30.0,120.0,93.75
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9556,28.5,31.5,120.0,120.0
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9289,30.0,33.0,120.0,115.0
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.5627,40.5,43.5,95.0,105.62
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.5628,42.0,45.0,165.0,141.25
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.839,43.5,46.5,165.0,165.0
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.8855,45.0,48.0,165.0,145.31
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.546,55.5,58.5,-175.0,-162.5
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.8694,57.0,60.0,-150.0,-156.56
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9315,58.5,61.5,-150.0,-150.0
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9292,60.0,63.0,-150.0,-114.69
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.747,70.5,73.5,135.0,52.5
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9827,72.0,75.0,-60.0,-7.81
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.8317,73.5,76.5,-60.0,-60.0
+Field,2m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.7699,75.0,77.4,-60.0,-69.23

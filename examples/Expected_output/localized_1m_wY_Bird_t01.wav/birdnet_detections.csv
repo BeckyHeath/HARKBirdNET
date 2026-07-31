@@ -1,0 +1,20 @@
+folder,filename,species_latin,species_common,confidence,time_start,time_end,azimuth_peak,azimuth_mean
+Field,1m_wY_Bird_t01.wav,Motacilla cinerea,Gray Wagtail,0.732,10.5,13.5,-45.0,-3.12
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.8605,15.0,18.0,30.0,46.25
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9063,16.5,19.5,30.0,33.44
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.8764,18.0,21.0,50.0,40.0
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.5534,28.5,31.5,120.0,120.0
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9535,30.0,33.0,120.0,124.38
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.7503,31.5,34.5,115.0,136.25
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.7511,43.5,46.5,80.0,148.0
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.5997,45.0,48.0,165.0,148.44
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.7406,46.5,49.5,160.0,73.75
+Field,1m_wY_Bird_t01.wav,Parus major,Great Tit,0.5397,46.5,49.5,160.0,73.75
+Field,1m_wY_Bird_t01.wav,Motacilla cinerea,Gray Wagtail,0.5768,49.5,52.5,95.0,65.31
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9729,58.5,61.5,-150.0,-135.31
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9316,60.0,63.0,-150.0,-149.38
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9353,61.5,64.5,-145.0,-120.62
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.5473,72.0,75.0,-80.0,-14.69
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9766,73.5,76.5,-60.0,-63.44
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9479,75.0,78.0,-60.0,-51.56
+Field,1m_wY_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9105,76.5,79.5,-50.0,-46.88

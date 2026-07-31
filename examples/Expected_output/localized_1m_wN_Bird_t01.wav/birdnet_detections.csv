@@ -1,0 +1,21 @@
+folder,filename,species_latin,species_common,confidence,time_start,time_end,azimuth_peak,azimuth_mean
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9794,13.5,16.5,30.0,-14.06
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9101,15.0,18.0,30.0,29.38
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.8609,16.5,19.5,30.0,36.88
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.5898,25.5,28.5,-110.0,6.0
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9186,27.0,30.0,115.0,82.81
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.8915,28.5,31.5,115.0,115.31
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.6828,30.0,33.0,120.0,72.81
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9203,42.0,45.0,160.0,137.5
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.8168,43.5,46.5,165.0,163.12
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.8476,45.0,48.0,160.0,119.69
+Field,1m_wN_Bird_t01.wav,Psittacula krameri,Rose-ringed Parakeet,0.6739,51.0,54.0,-15.0,-34.69
+Field,1m_wN_Bird_t01.wav,Psittacula krameri,Rose-ringed Parakeet,0.6977,52.5,55.5,-25.0,-38.44
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.6726,55.5,58.5,-60.0,-105.0
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9675,57.0,60.0,-155.0,-131.56
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.75,58.5,61.5,-155.0,-155.0
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.8347,60.0,63.0,-155.0,-151.88
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9247,70.5,73.5,-75.0,-39.38
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9508,72.0,75.0,-60.0,-42.5
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.9343,73.5,76.5,-60.0,-60.0
+Field,1m_wN_Bird_t01.wav,Troglodytes troglodytes,Eurasian Wren,0.8635,75.0,77.0,-60.0,-61.36
