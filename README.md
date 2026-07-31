@@ -13,7 +13,10 @@ raw audio → HARK localisation → BirdNET detection + azimuth
           → DOA clustering → pseudo-individuals
 ```
 
-Analysis code for the field demo looking at vertical stratification is in a seperate repo
+> **[PLACEHOLDER]** Paper citation · Zenodo DOI
+
+Analysis code for the paper (vertical stratification) lives in a separate
+repository.
 
 Details: [`docs/CONFIGURATION.md`](docs/CONFIGURATION.md) ·
 [`docs/TECHNICAL_NOTES.md`](docs/TECHNICAL_NOTES.md)
@@ -38,13 +41,15 @@ Two of these catch people out:
 confident, wrong directions with no error or warning.
 
 **Clustering tolerance (`AZIMUTH_WINDOW`)** is a hardware property, not a
-constant. The shipped 25° is what was measured for the MAARU array. Derive your
-own — [`docs/CONFIGURATION.md`](docs/CONFIGURATION.md) explains how.
+constant. The shipped 25° is what was measured for the MAARU array. You can
+start with it and refine later — nothing breaks — but individual counts depend
+on it, so measure your own before publishing.
+[`docs/CONFIGURATION.md`](docs/CONFIGURATION.md) explains how.
 
 Per-species confidence thresholds from manual validation are used at the last
 step, but aren't needed to get started — see §4.
 
-Recordings go in one subfolder per site-day:
+Recordings go in **at least one subfolder** — typically one per site-day:
 
 ```
 Data/
@@ -52,6 +57,13 @@ Data/
 │   └── SITE-2021-09-05_08-00-00_dur=600secs.wav
 └── SITE-2021-09-06/
 ```
+
+**Files sitting loose in `Data/` are not picked up** — the scripts only look
+one level down. If you have a single flat folder, nest it inside another.
+
+`Data/` can live anywhere; `DATA_DIR` in `config.py` points at it. Audio does
+not need to sit inside the repository, and generally shouldn't. Budget disk
+space for roughly 1.5× your raw audio, for HARK's output.
 
 ---
 
@@ -63,9 +75,16 @@ numpy 1.26.4 · TensorFlow 2.15.1 · ffmpeg 4.4.2.
 **System packages**
 
 ```bash
-sudo apt update && sudo apt upgrade
-sudo apt install curl python3-venv python3-pip
+sudo apt update
+sudo apt install git curl unzip python3-venv python3-pip
 sudo apt install xterm sox python-is-python3 ffmpeg python3-tk
+```
+
+**Get the repository.** Everything from here on runs from inside this folder.
+
+```bash
+git clone https://github.com/BeckyHeath/HARKBirdNET.git
+cd HARKBirdNET
 ```
 
 **HARK repository**
@@ -80,8 +99,14 @@ sudo apt update
 sudo apt install libhark-lib python3-hark-lib
 ```
 
-**Virtual environment + PyHARK v2** — must be a venv. The system `hark` is
-1.1.0, has no `hark.base`, and shadows it otherwise.
+**Virtual environment + PyHARK v2.** A virtual environment is an isolated
+Python install — packages go in one folder instead of system-wide. It is not
+optional here: the system-wide `hark` package is version 1.1.0, has no
+`hark.base`, and shadows the version this pipeline needs.
+
+If you're coming from R, there's no real equivalent. The thing to remember is
+that **you must activate it in every new terminal session**, and nothing works
+until you do.
 
 ```bash
 python3 -m venv ~/harkenv
@@ -101,10 +126,11 @@ python -c "import birdnet; print('BirdNET OK')"
 
 **HARKBird 4.5** — download from the
 [project page](https://sites.google.com/view/alcore-suzuki/home/harkbird) and
-unzip into the repository root (or set `HARKBIRD_DIR` in `config.py`).
+unzip into the repository root, so it sits alongside `harkbirdnet/` and
+`patches/`. (Anywhere else works too — just set `HARKBIRD_DIR` in `config.py`.)
 
 ```bash
-unzip HARKBird_4.5.zip
+unzip HARKBird_4.5.zip        # run from the repository root
 ```
 
 **GHDSS patch — required.** HARKBird runs source separation internally and
@@ -113,9 +139,9 @@ pipeline doesn't use the separated audio.
 
 ```bash
 cd HARKBird_4.5
-cp hb_pyhark.py hb_pyhark.py.orig
+cp hb_pyhark.py hb_pyhark.py.orig      # keep the original
 patch -p1 < ../patches/disable_ghdss.patch
-cd ..
+cd ..                                   # back to the repository root
 ```
 
 **Stop the machine sleeping** — a suspended laptop kills a running batch.
@@ -145,13 +171,30 @@ or `localise.py` has been changed to call `localize_separate()` directly
 instead of via subprocess. See
 [`docs/TECHNICAL_NOTES.md`](docs/TECHNICAL_NOTES.md#memory).
 
+**`python: command not found`** — you're outside the virtual environment. Run
+`source ~/harkenv/bin/activate`. Check with `which python`: it should point
+inside `harkenv`, not `/usr/bin`.
+
+**`ModuleNotFoundError: No module named 'config'`** — you ran a script from
+inside `harkbirdnet/`. Run from the repository root instead:
+`python harkbirdnet/detect.py`.
+
+**"No WAV files found"** — your recordings are loose in `DATA_DIR`. They must
+sit in a subfolder; the scripts only look one level down.
+
 </details>
 
 ---
 
 ## 3. Configure
 
-**Edit `harkbirdnet/config.py`. That's the only file you change.**
+**Edit `harkbirdnet/config.py`. That's the only file you change.** Open it in
+any text editor — it's plain Python, and every setting has a comment above it
+explaining what it does.
+
+```bash
+nano harkbirdnet/config.py     # or gedit, VS Code, whatever you use
+```
 
 | Setting | |
 | --- | --- |
@@ -179,9 +222,27 @@ python harkbirdnet/tidy.py                        # 5. parse site + timestamp
 python harkbirdnet/generate-pseudoindividuals.py  # 6. DOA clustering
 ```
 
-Run from the repository root. Steps 2 and 3 skip recordings that already have a
-`spectrum.txt`, so an interrupted batch restarts safely. Step 2 dominates
-runtime.
+Run from the repository root, with the environment activated. Each script
+prints progress as it goes.
+
+**Start with a handful of recordings.** Copy two or three into a test folder,
+point `DATA_DIR` at it, and run the whole thing end to end before launching on
+a full dataset. Catching a wrong transfer function after three files is much
+better than after three days.
+
+**Step 2 dominates runtime** — expect a substantial fraction of real time per
+recording, so a large dataset is an overnight or multi-day job. Steps 2 and 3
+skip recordings that already have a `spectrum.txt`, so an interrupted batch
+restarts safely: just run it again.
+
+For long runs over SSH, use `screen` or `tmux` — otherwise the job dies when the
+connection drops:
+
+```bash
+screen -S harkbird
+# start the run, then press Ctrl-A then D to detach
+# reconnect later with:  screen -r harkbird
+```
 
 Step 6 expects per-species confidence cutoffs (`species_common,cutoff_prec`) at
 `CUTOFF_PATH`. Without them:
@@ -218,9 +279,17 @@ values don't overwrite each other.
 
 ## 6. Worked example
 
-> **[PLACEHOLDER]** Field-test recording with a source at known bearings, so
-> estimated azimuths can be checked against ground truth. See
-> `examples/README.md`.
+[`examples/`](examples/) contains three outdoor playback trials — a Eurasian
+Wren recording played from six known bearings around the array — with the
+expected output at every stage.
+
+Running it confirms your install works and, more usefully, lets you check
+estimated directions against ground truth. That is the part most likely to be
+silently wrong on a new machine: a mismatched transfer function produces
+confident, plausible-looking azimuths that are simply incorrect.
+
+See [`examples/README.md`](examples/README.md) for the bearings, the settings
+to use, and a symptom table for when output doesn't match.
 
 ---
 
@@ -254,8 +323,23 @@ examples/
 
 ## Licence
 
-> **[PLACEHOLDER]** HARKBird and its transfer functions are the work of Reiji
-> Suzuki (Nagoya University) under their own terms — linked, not redistributed.
+> **[PLACEHOLDER]** Licence for this repository.
 
-HARKBird 4.5 was developed by Reiji Suzuki and colleagues at Nagoya University.
-HARK is developed by Honda Research Institute Japan and Kyoto University.
+This pipeline depends on third-party components with their own terms. None are
+redistributed here.
+
+**BirdNET.** The `birdnet` package source is MIT licensed, but **the BirdNET
+models are licensed CC BY-NC-SA 4.0** — non-commercial use only. The BirdNET
+team states that educational and research purposes count as non-commercial, so
+academic use is freely permitted; commercial use is not, whatever licence this
+repository carries. If you cite BirdNET:
+
+> Kahl, S., Wood, C.M., Eibl, M. & Klinck, H. (2021) BirdNET: A deep learning
+> solution for avian diversity monitoring. *Ecological Informatics*, 61,
+> 101236.
+
+**HARKBird 4.5** is the work of Reiji Suzuki and colleagues at Nagoya
+University, distributed under its own terms from the HARKBird project page.
+The transfer functions ship with it.
+
+**HARK** is developed by Honda Research Institute Japan and Kyoto University.

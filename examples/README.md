@@ -41,7 +41,8 @@ recording.
 
 ## Running it
 
-Temporarily set these in `harkbirdnet/config.py`, then restore your own:
+These recordings need trial-specific settings. **Note your own values first** —
+you'll want them back afterwards. Then set these in `harkbirdnet/config.py`:
 
 ```python
 DATA_DIR = PROJECT_ROOT / "examples"
@@ -53,11 +54,15 @@ WEEK = [PLACEHOLDER]
 `LAT`/`LON`/`WEEK` matter — they set BirdNET's species filter. With coordinates
 from elsewhere, Eurasian Wren won't be in it and you'll get **zero detections**.
 
+Then, from the repository root:
+
 ```bash
 source ~/harkenv/bin/activate
 python harkbirdnet/localise.py
 python harkbirdnet/detect.py
 ```
+
+Takes a couple of minutes — these are short recordings.
 
 The filenames don't match the default `FILENAME_REGEX`, so either rename them
 to the `SITE-YYYY-MM-DD_HH-MM-SS_dur=Nsecs.wav` convention to continue, or stop

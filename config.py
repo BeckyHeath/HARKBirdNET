@@ -94,11 +94,14 @@ TEMPORAL_WINDOW = 600
 # RE-DERIVED FOR YOUR HARDWARE.
 #
 # It is a RADIUS from the cluster seed, not a diameter, so cluster width can
-# approach twice this value. 25 is the upper quartile of direction-of-arrival
-# error measured for the MAARU array in pre-deployment trials: if three
-# quarters of estimates land within 25 degrees of truth, detections further
-# apart than that are more likely to be different birds than one bird
-# mis-localised.
+# approach twice this value.
+#
+# Playback trials with the MAARU array (n=52, 1-8 m) gave a median error of
+# 0 degrees and 92.3% of estimates within 10 degrees. The remaining 7.7% were
+# off by 100 degrees or more, with nothing in between -- the error
+# distribution is bimodal. 25 degrees covers the well-behaved mode with
+# margin, and leaves room for the bird to move within a block. It cannot help
+# with the catastrophic mode, which seeds a spurious individual regardless.
 #
 # Too small overcounts (one wandering bird splits); too large undercounts
 # (separate birds merge). See docs/CONFIGURATION.md for how to measure yours.
